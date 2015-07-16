@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GeoMe</title>
+        <script src="apps/api/jquery.js"></script>
+        <script src="apps/api/init.js"></script>
+
+        <script>
+            var app = new wilson();
+                app.initapp("GeoMe", "wilson.geome", ['WQL', 'datastore']);
+                
+                    app.datastore("CHECK", "geomescript", null, "monitor", null, function(data){
+                        if(data.exist == false){
+                            app.datastore("MONITOR", "geomescript", "/geome/geome.js", "monitor", null, function(data){
+                                if(data.success == false){
+                                    alert("Couldn't include script.");
+                                }
+                            });
+                        }
+                    });
+
+                app.WQL("SELECT * FROM websites", null, function(data){
+                    for (var i = 0; i < data.length; i++) {
+                        $("#websites").append('<li class="list-group-item" style="cursor: pointer;" onClick="loadLocationData('+ data[i].id +')">'+ data[i].title +'</li>');
+                    }
+                });
+
+
+                function loadLocationData(website){
+                    app.datastore("CHECK", null, null, "geomelocations", website, function(data){
+                        if(data.exist == false){
+                            $("#message").html("There is no location data recorded for this website.");
+                        }else{
+                           app.datastore("GET", null, null, "geomelocations", website, function(data){
+                                for (var i = 0; i < data.length; i++) {
+                                     $("#tablebody").empty();
+                                    $("#tablebody").append("<tr><td>" + data[i].name  + "</td><td>" + data[i].data + "</td></tr>");
+                                }
+                           }); 
+                        }
+                    });
+                }
+
+                
+        </script>
+    
+    </head>
+    <body>
+        <center>
+            <img src="apps/geome/textlogo.png" style="width: 35%;">
+            <p>Select the website you want to load Location-based statistics for.</p>
+            <ul class="list-group" style="width: 490px; box-shadow: none;" id="websites"></ul>
+
+            <h1 id="message"></h1>
+
+              <table class="table" style="width: 55%;">
+                <thead>
+                  <tr>
+                    <th>Country</th>
+                   <th>Hits</th>
+                  </tr>
+                </thead>
+              <tbody id="tablebody">
+                
+            </tbody>
+          </table>
+        </center>
+    </body>
+</html>

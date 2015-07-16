@@ -1,0 +1,38 @@
+<div ng-controller="settingsCtrl">
+
+
+<legend><i class="fa fa-cogs"></i> Wilson Analytics Settings</legend>
+<p><b>Change username and password.</b></p>
+<form ng-submit="changecombo()" ng-show="success1==false">
+	<div class="form-group">
+		<label for="username">New username</label>
+		<input type="text" class="form-control" id="username" placeholder="theherp223" ng-model="username">
+	</div>
+	<div class="form-group">
+		<label for="password">New password</label>
+		<input type="password" class="form-control" id="password" placeholder="*******" ng-model="password">
+	</div>
+	<div class="form-group" style="margin-bottom: 5px;">
+		<input type="submit" class="btn btn-primary" value="Change username and password." style="margin-bottom: 5px;">
+		<div class="alert alert-warning" style="padding: 4px; margin-top: 5px; margin-bottom: 0px;"><b>You have to change</b> the password and username. If you are still using the default combo your security is less.</div>
+	</div>
+</form>
+<div success successs="success1" successmessage="smessage1"></div> 
+<div error errorr="error" errormessage="message"></div>
+<div ng-show="bowfish==false" style="padding: 4px; margin-top: 5px;" class="alert alert-danger">Wilson is currently using the md5 hashing alogrithm for password hashing, Which is not secure, Upgrade your PHP to support blowfish alogrithm. </div>
+<div ng-show="bowfish==true">
+	<div class="alert alert-warning" style="padding: 4px; margin-top: 5px; margin-bottom: 5px;">The salt for password hashing is randomly generated. If you want to change it you have to do it manually from the database.</div>
+	</div>
+</form>
+<!--
+<p style="margin-bottom: 5px;"><b>Change Installation Directory</b></p>
+<form ng-submit="changeloc()">
+	<div class="form-group" style="margin-bottom: 0px;">
+		<label for="dir">Change Location </label>
+		<input type="text" class="form-control" id="dir" ng-model="newdir" placeholder="http://www.yourherpsite.com/wilson">
+		<label>The current installed location is: {{rootloc}}</label>
+	</div>
+		<input type="submit" class="btn btn-default" value="Change location">
+</form>
+<div success successs="success3" successmessage="smessage3"></div>-->
+</div>

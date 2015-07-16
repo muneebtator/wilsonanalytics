@@ -1,0 +1,34 @@
+<div ng-controller="dashCtrl">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand logo" ui-sref="start">Wilson Analytics</a>
+        </div>
+      </div>
+</div>
+
+<div class="container" style="padding-top: 58px;">
+  <div class="row">
+    <div class="col-md-3">
+         <legend style="margin-bottom: 5px;"><small>Websites</small></legend>
+        <div class="alert alert-warning" ng-if="nowebsite"><i class="fa fa-warning"></i> It appears that you don't have any websites, Why don't you add some?</div>
+        <div class="list-group" style="margin-bottom: 7px;">
+         <a ng-repeat="website in websites" ui-sref="website({id: {{website.id}}, title: '{{website.title}}', url: '{{website.url}}'})" class="list-group-item"><i class="fa fa-dash"></i> {{website.title}}</a>
+      </div>
+          <legend style="margin-bottom: 5px;"><small>Actions</small></legend>
+      <div class="list-group" style="margin-bottom: 7px;">
+         <a ui-sref='addwebsite' class="list-group-item"><i class="fa fa-plus"></i> Add a Website</a>
+         <a ui-sref='settings' class="list-group-item"><i class="fa fa-cogs"></i> Settings</a>
+         <a style="cursor: pointer;" ng-click="logout()" class="list-group-item"><i class="fa fa-sign-out"></i> Logout</a>
+      </div>
+       <legend style="margin-bottom: 5px;"><small>Apps</small></legend>
+      <div class="list-group" style="margin-bottom: 7px;">
+        <a ui-sref='myapps' class="list-group-item"><i class="fa fa-tasks"></i> My Apps</a>
+      </div>
+    </div>
+        <div class="col-md-9" ui-view>
+        
+        </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,31 @@
+<div ng-controller="welcomeCtrl">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand logo" href="#">Wilson Analytics</a>
+        </div>
+      </div>
+</div>
+
+<div class="jumbotron welcome" style="padding-top: 58px;">
+      <div class="container">
+      <div class="row">
+        <div class="col-md-4 colcen">
+          <center>
+            <img src="img/wilson.png">
+            <div ng-show="showlogin">
+            <form ng-submit="login()">
+              <input class="form-control" type="text" placeholder="Admin Username" ng-model="username" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+              <input class="form-control" type="password" placeholder="Admin Password" ng-model="password" style="border-top-left-radius: 0px; border-top-right-radius: 0px;">
+              <input type="submit" class="btn btn-primary btn-block" value="Login" style="margin-top: 4px; border: 2px solid black;">
+            </form>
+            </div>
+            <div error errorr="error" errormessage="message"></div>
+            <div loading show="showloading"></div>
+          </center>
+        </div>
+      </div>
+      </div>
+</div>
+</div>
+

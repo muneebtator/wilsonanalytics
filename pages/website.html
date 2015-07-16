@@ -1,0 +1,164 @@
+<div ng-controller="websiteCtrl">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand">{{title}}</a>
+    </div>
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="row">
+	<div class="col-md-4" style="float: right;">
+		<div class="well">
+			<legend style="margin-bottom: 8px;">Quick Analytics</legend>
+			<ul style="list-style-type: none; padding-left: 4px;">
+				<li style="margin-bottom: 3px;"><i class="fa fa-flag-o"></i> Total hits: <b>{{totalhits}}</b></li>
+				<li style="margin-bottom: 3px;"><i class="fa fa-caret-square-o-up"></i> Today hits: <b>{{todayhits}}</b></li>
+				<li style="margin-bottom: 3px;"><i class="fa fa-caret-square-o-up"></i> Yesterday hits: <b>{{yesterdayhits}}</b></li>
+				<li style="margin-bottom: 3px;"><i class="fa fa-clock-o"></i> Last hit: <b>{{lasthiton}}</b></li>
+				<li style="margin-bottom: 3px;"><i class="fa fa-paper-plane-o"></i> Top referral: <b>{{topref}}</b></li>
+				<li style="margin-bottom: 3px;"><i class="fa fa-exchange"></i> Total link-backs: <b>{{linkbacks}}</b></li>
+			</ul>
+			<p style="padding-top: 1px; margin-bottom: 0px;">{{msg1}}</p>
+			<!--<p style="font-size: 12px; margin-bottom: 1px;"><b>Load Analytics for a specific page/url.</b></p>
+			<form ng-submit="loadPageTraffic()">
+			<input type="url" ng-model="pageurl"class="form-control" placeholder="Page full url">
+			<input type="submit" class="btn btn-success" style="margin-top: 4px; padding: 6px;" value="Load Analytics for this page">
+			</form>
+			<div error errorr="error" errormessage="message"></div>-->
+		</div>
+	</div>
+	<div ui-view></div>
+	<div class="col-md-8">
+		<legend style="margin-bottom: 8px;">Code for {{title}}</legend>
+		<div class="well">
+			<p>Paste this code into the {{title}} footer section.  This way we will be able to record the traffic. <b>JQuery is required for the script to run.</b></p>
+			<code style="word-wrap: break-word;"> &lt;script src=&quot;{{rootloc}}apps/api/init.js&quot;&lt;&gt;/script&gt;</code><br>
+			<code style="word-wrap: break-word;"> &lt;script src=&quot;{{rootloc}}js/wilson.php?website={{websiteId}}&quot;&lt;&gt;/script&gt;</code>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<legend style="margin-bottom: 8px;">Hits by returning visitors</legend>
+				<h1 style="font-size: 33px; margin-top: 0px; text-align: center; margin-bottom: 5px;">{{returningvisits}}</h1>
+			</div>
+			<div class="col-md-6" style="float: right;">
+				<legend style="margin-bottom: 8px;">Hits by new visitors</legend>
+				<h1 style="font-size: 33px; margin-top: 0px; text-align: center; margin-bottom: 5px;">{{newvisits}}</h1>
+			</div>
+		</div>
+	</div>
+
+		<legend style="margin-bottom: 8px;">Popular Pages on {{title}}</legend>
+	<div class="table-responsive">
+		<table class="table">
+        	<thead>
+     			<tr>
+           			<th>#</th>
+           			<th>Page Name</th>
+           			<th>Total Hits</th>
+      			</tr>
+        	</thead>
+        	<tbody>
+				<tr ng-repeat="page in pages">
+					<td>{{page.id}}</td>
+					<td>{{page.page}}</td>
+					<td>{{page.hits}}</td>
+				</tr>
+       		</tbody>
+      </table>
+	</div>
+
+	<legend style="margin-bottom: 8px;">Top referrals for {{title}}</legend>
+		<div class="table-responsive">
+		<table class="table">
+        	<thead>
+     			<tr>
+           			<th>Ref id</th>
+           			<th>Referrer Name</th>
+           			<th>Total Refs</th>
+      			</tr>
+        	</thead>
+        	<tbody>
+				<tr ng-repeat="ref in refs">
+					<td>{{ref.id}}</td>
+					<td>{{ref.refwebsite}}</td>
+					<td>{{ref.totalrefs}}</td>
+				</tr>
+       		</tbody>
+      </table>
+
+      	<legend style="margin-bottom: 8px;">Hits from search engines for {{title}}</legend>
+		<div class="table-responsive">
+		<table class="table">
+        	<thead>
+     			<tr>
+           			<th>Search Engine Name</th>
+           			<th>Hits</th>
+      			</tr>
+        	</thead>
+        	<tbody>
+				<tr ng-repeat="searchengine in searchengines">
+					<td>{{searchengine.name}}</td>
+					<td>{{searchengine.hits}}</td>
+				</tr>
+       		</tbody>
+      </table>
+
+      	<legend style="margin-bottom: 8px;">Visits by gadgets to {{title}}</legend>
+		<div class="table-responsive">
+		<table class="table">
+        	<thead>
+     			<tr>
+           			<th>Name</th>
+           			<th>Hits</th>
+      			</tr>
+        	</thead>
+        	<tbody>
+				<tr ng-repeat="deviceshare in deviceshare">
+					<td>{{deviceshare.device}}</td>
+					<td>{{deviceshare.hits}}</td>
+				</tr>
+       		</tbody>
+      </table>
+	</div>
+      
+      <legend style="margin-bottom: 8px;">Latest visits to {{title}}</legend>
+		<div class="table-responsive">
+		<table class="table">
+        	<thead>
+     			<tr>
+           			<th>Page</th>
+           			<th>Referrer</th>
+           			<th>Device</th>
+           			<th>On</th>
+      			</tr>
+        	</thead>
+        	<tbody>
+				<tr ng-repeat="visit in visits">
+					<td title="{{visit.page}}">{{visit.pagetitle}}</td>
+					<td title="{{visit.ref}}">{{visit.smallurl}}</td>
+					<td>{{visit.device}}</td>
+					<td>{{visit.kala}}</td>
+				</tr>
+       		</tbody>
+      </table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+	
+	</div>
+	</div>
+</div>
+<!--<div ac-chart="chartType" ac-data="data" ac-config="config" id='chart' class='chart'></div>
+<br>
+<hr>
+<div ac-chart="chartTypee" ac-data="datapie" ac-config="configpie" id='chart' class='chart'></div>
+<br>
+<hr>
+<div ac-chart="chartTypeee" ac-data="datapiee" ac-config="configpiee" id='chart' class='chart'></div>-->
+
+</div>

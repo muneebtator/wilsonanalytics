@@ -1,0 +1,15 @@
+<legend><i class="fa fa-plus"></i> Add a website</legend>
+<form ng-submit="addwebsite(title, url)" ng-show="success==false">
+<div class="form-group">
+	<input type="text" placeholder="Website Name/Title" ng-model="title" class="form-control" style="margin-bottom: 5px;">
+		</div>
+<div class="form-group">
+
+	<input type="text" placeholder="Website URL without the http and www stuff." ng-model="url" class="form-control">
+	</div>
+	<div class="form-group">
+	<input type="submit" class="btn btn-primary" value="Add Website" style="margin-top: 5px;">
+	</div>
+</form>
+<div success successs="success" successmessage="smessage"></div> 
+<div error errorr="error" errormessage="message"></div>
