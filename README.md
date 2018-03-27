@@ -1,7 +1,7 @@
 # Wilson Analytics
 Wilson analytics is a open source website traffic and analytical tool built using the JavaScript AngularJS library and PHP. 
 
-
+<b>I no longer maintain this project but you are free to use it in any way you want.</b>
 
 The most simple but powerful user interface ever
 ------------------------------------------------
