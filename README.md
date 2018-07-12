@@ -3,7 +3,7 @@ Wilson analytics is a open source website traffic and analytical tool built usin
 
 <b>I no longer maintain this project but you are free to use it in any way you want.</b>
 
-<a href="https://www.muneebtatar.com/portfolio/projects/wilson/docs/">Read the documentation</a>
+<a href="https://www.muneebtatar.com/wilson/docs">Read the documentation</a>
 
 The most simple but powerful user interface ever
 ------------------------------------------------
